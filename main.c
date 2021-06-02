@@ -562,12 +562,23 @@ int		check_if_sorted(t_stack *stack_a)
 void ft_free(t_stack *stack)
 {
 	int i;
+	int max;
 	t_stack *tmp;
 	i = 0;
-	while (i < ft_get_lengt(stack))
+	max =ft_get_lengt(stack);
+	while (stack->prev)
 	{
-		free(stack);
+		stack = stack->prev;
+	}
+	
+	while (i < max)
+	{
+	printf("==> %d\n",ft_get_lengt(stack) );
+		tmp = stack;
+		if(stack)
 		stack = stack->next;
+		puts("here");
+		free(tmp);
 		i++;
 	}
 }
