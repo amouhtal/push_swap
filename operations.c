@@ -9,7 +9,7 @@ t_stack *ft_sa(t_stack *stack_a)
 	tmp = stack_a->next->value;
 	stack_a->next->value = stack_a->value;
 	stack_a->value = tmp;
-	ft_putstr_fd("sa\n", 1);
+	// ft_putstr_fd("sa\n", 1);
 	return (stack_a);
 }
 
@@ -22,16 +22,16 @@ t_stack *ft_sb(t_stack *stack_b)
 	tmp = stack_b->next->value;
 	stack_b->next->value = stack_b->value;
 	stack_b->value = tmp;
-	ft_putstr_fd("sb\n", 1);
+	// ft_putstr_fd("sb\n", 1);
 	return (stack_b);
 }
 
-t_vars *ft_ss(t_vars *vars)
+t_frame *ft_ss(t_frame *frame)
 {
-	ft_sa(vars->stack_a);
-	ft_sb(vars->stack_b);
-	ft_putstr_fd("ss\n", 1);
-	return (vars);
+	ft_sa(frame->stack_a);
+	ft_sb(frame->stack_b);
+	// ft_putstr_fd("ss\n", 1);
+	return (frame);
 }
 
 
@@ -50,7 +50,7 @@ t_stack *ft_ra(t_stack *stack_a)
 	stack_a->next = head;
 	head->prev = stack_a;
 	head->next = NULL;
-	ft_putstr_fd("ra\n", 1);
+	// ft_putstr_fd("ra\n", 1);
 	return (ret);
 }
 
@@ -70,7 +70,7 @@ t_stack *ft_rb(t_stack *stack_b)
 	stack_b->next = head;
 	head->prev = stack_b;
 	head->next = NULL;
-	ft_putstr_fd("rb\n", 1);
+	// ft_putstr_fd("rb\n", 1);
 	return (ret);
 }
 
@@ -88,7 +88,7 @@ t_stack *ft_rra(t_stack *stack_a)
 	stack_a->prev = tail;
 	tail->prev = NULL;
 	tail->next = stack_a;
-	ft_putstr_fd("rra\n", 1);
+	// ft_putstr_fd("rra\n", 1);
 	return (tail);
 }
 
@@ -110,74 +110,74 @@ t_stack *ft_rrb(t_stack *stack_b)
 		tail->prev = NULL;
 		tail->next = stack_b;
 	}
-	ft_putstr_fd("rrb\n", 1);
+	// ft_putstr_fd("rrb\n", 1);
 	return (tail);
 }
 
-void    ft_pb(t_vars *vars)
+void    ft_pb(t_frame *frame)
 {
 	t_stack *node;
-	if(vars->stack_b != NULL)
+	if(frame->stack_b != NULL)
 	{
-		while (vars->stack_b->prev)
-			vars->stack_b = vars->stack_b->prev;
-		if(vars->stack_a)
+		while (frame->stack_b->prev)
+			frame->stack_b = frame->stack_b->prev;
+		if(frame->stack_a)
 		{
-			while (vars->stack_a->prev)
-				vars->stack_a = vars->stack_a->prev;
-			node = vars->stack_a;
-			vars->stack_a = vars->stack_a->next;
-			if (vars->stack_a)
-				vars->stack_a->prev = NULL;
-			vars->stack_b->prev = node;
-			node->next = vars->stack_b;
+			while (frame->stack_a->prev)
+				frame->stack_a = frame->stack_a->prev;
+			node = frame->stack_a;
+			frame->stack_a = frame->stack_a->next;
+			if (frame->stack_a)
+				frame->stack_a->prev = NULL;
+			frame->stack_b->prev = node;
+			node->next = frame->stack_b;
 		}
 	}
 	else
 	{
-		while (vars->stack_a->prev)
-			vars->stack_a = vars->stack_a->prev;
-		node = vars->stack_a;
-		vars->stack_a = vars->stack_a->next;
-		vars->stack_a->prev = NULL;
+		while (frame->stack_a->prev)
+			frame->stack_a = frame->stack_a->prev;
+		node = frame->stack_a;
+		frame->stack_a = frame->stack_a->next;
+		frame->stack_a->prev = NULL;
 		node->next = NULL;
-		vars->stack_b = node;
+		frame->stack_b = node;
 	}
-	ft_putstr_fd("pb\n", 1);
+	// ft_putstr_fd("pb\n", 1);
 }
 
-void    ft_pa(t_vars *vars)
+void    ft_pa(t_frame *frame)
 {
 	t_stack *node;
-	if(vars->stack_a != NULL)
+	if(frame->stack_a != NULL)
 	{
-		while (vars->stack_a->prev)
-			vars->stack_a = vars->stack_a->prev;
-		if(vars->stack_b)
+		while (frame->stack_a->prev)
+			frame->stack_a = frame->stack_a->prev;
+		if(frame->stack_b)
 		{	
-			while (vars->stack_b->prev)
-				vars->stack_b = vars->stack_b->prev;
-			node = vars->stack_b;
-			vars->stack_b = vars->stack_b->next;
-			if (vars->stack_b)
-				vars->stack_b->prev = NULL;
+			while (frame->stack_b->prev)
+				frame->stack_b = frame->stack_b->prev;
+			node = frame->stack_b;
+			frame->stack_b = frame->stack_b->next;
+			if (frame->stack_b)
+				frame->stack_b->prev = NULL;
 
-			vars->stack_a->prev = node;
-			node->next = vars->stack_a;
+			frame->stack_a->prev = node;
+			node->next = frame->stack_a;
 		}
 	}
 	else
 	{
-		if(vars->stack_b)
+		if(frame->stack_b)
 		{
-			while (vars->stack_b->prev)
-				vars->stack_b = vars->stack_b->prev;
-			node = vars->stack_b;
-			vars->stack_b = vars->stack_b->next;
-			vars->stack_b->prev = NULL;
+			while (frame->stack_b->prev)
+				frame->stack_b = frame->stack_b->prev;
+			node = frame->stack_b;
+			frame->stack_b = frame->stack_b->next;
+			frame->stack_b->prev = NULL;
 			node->next = NULL;
-			vars->stack_a = node;
+			frame->stack_a = node;
 		}
 	}
-	ft_putstr_fd("pa\n", 1);
+	// ft_putstr_fd("pa\n", 1);
 }

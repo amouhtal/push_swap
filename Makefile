@@ -1,5 +1,5 @@
 CC = gcc 
-SRCS = main.c operations.c push_swap_utils.c
+SRCS = main.c operations.c push_swap_utils.c sort100element.c creat_stack.c
 NAME = push_swap
 OBJS = $(SRCS:.c=.o)
 %.o:%.c *.h

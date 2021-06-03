@@ -1,5 +1,4 @@
 #include "push_swap.h"
-#include <unistd.h>
 
 void	ft_putstr_fd(char *s, int fd)
 {
@@ -15,10 +14,10 @@ void	ft_putstr_fd(char *s, int fd)
 	}
 }
 
-unsigned long long	ft_atoi(const char *str)
+long long	ft_atoi(const char *str, int *check)
 {
-	unsigned long long		i;
-	unsigned long long	res;
+	int		i;
+	long	res;
 	int		sign;
 
 	i = 0;
@@ -35,6 +34,11 @@ unsigned long long	ft_atoi(const char *str)
 	{
 		res = (res * 10) + (str[i] - '0');
 		i++;
+	}
+	if ((res * sign) > 2147483647 || (res * sign) < -2147483648)
+	{
+		ft_putstr_fd("Error\n", 2);
+		*check = 1;
 	}
 	return (res * sign);
 }

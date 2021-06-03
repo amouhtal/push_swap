@@ -6,14 +6,14 @@
 # include <unistd.h>
 # include <fcntl.h>
 
-typedef struct stack
+typedef struct  s_stack
 {
     int value;
-    struct stack *next;
-    struct stack *prev;
-} t_stack;
+    struct s_stack *next;
+    struct s_stack *prev;
+}               t_stack;
 
-typedef struct vars
+typedef struct s_frame
 {
     int *sorted_table;
     int stack_lengt;
@@ -21,22 +21,30 @@ typedef struct vars
     int hold_second;
     t_stack *stack_a;
     t_stack *stack_b;
-} t_vars;
+}              t_frame;
 
 t_stack *ft_sa(t_stack *stack_a);
 t_stack *ft_sb(t_stack *stack_b);
-t_vars *ft_ss(t_vars *vars);
+t_frame *ft_ss(t_frame *frame);
 t_stack *ft_rrb(t_stack *stack_b);
 t_stack *ft_ra(t_stack *stack_a);
 t_stack *ft_rb(t_stack *stack_b);
 t_stack *ft_rra(t_stack *stack_a);
-int ft_get_lengt(t_stack *stack);
-void ft_pb(t_vars *vars);
-void ft_pa(t_vars *vars);
+int     ft_get_lengt(t_stack *stack);
+void    ft_pb(t_frame *frame);
+void    ft_pa(t_frame *frame);
 void	ft_putstr_fd(char *s, int fd);
-int above_100element(t_vars *vars);
-int sort100element(t_vars vars);
-t_stack *sort5element(t_vars vars);
-unsigned long long	ft_atoi(const char *str);
+int     above_100element(t_frame *frame);
+int     sort100element(t_frame frame);
+t_stack     *sort5element(t_frame frame);
+long long	ft_atoi(const char *str, int *check);
+t_frame  pushin_chunk(t_frame frame, int start, int fin);
+t_frame	pushin_back(t_frame frame);
+t_stack *sort3element(t_stack *stack);
+int	ft_get_biggest(t_frame frame);
 int	ft_isdigit(int c);
+void ft_print_stack(t_stack *stack);
+t_stack *new_stack_a();
+t_stack *add_list(t_stack *stack);
+t_stack    *get_stack_a( char **argv,t_stack *stack_a);
 #endif
