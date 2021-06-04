@@ -31,7 +31,7 @@ t_stack *add_list(t_stack *stack)
 	return (new_stack);
 }
 
-t_stack    *get_stack_a( char **argv,t_stack *stack_a)
+t_stack    *get_stack_a( char **argv, t_stack *stack_a)
 {
 	int	i;
 

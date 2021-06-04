@@ -9,7 +9,7 @@ t_stack *ft_sa(t_stack *stack_a)
 	tmp = stack_a->next->value;
 	stack_a->next->value = stack_a->value;
 	stack_a->value = tmp;
-	// ft_putstr_fd("sa\n", 1);
+	ft_putstr_fd("sa\n", 1);
 	return (stack_a);
 }
 
@@ -22,7 +22,7 @@ t_stack *ft_sb(t_stack *stack_b)
 	tmp = stack_b->next->value;
 	stack_b->next->value = stack_b->value;
 	stack_b->value = tmp;
-	// ft_putstr_fd("sb\n", 1);
+	ft_putstr_fd("sb\n", 1);
 	return (stack_b);
 }
 
@@ -30,7 +30,7 @@ t_frame *ft_ss(t_frame *frame)
 {
 	ft_sa(frame->stack_a);
 	ft_sb(frame->stack_b);
-	// ft_putstr_fd("ss\n", 1);
+	ft_putstr_fd("ss\n", 1);
 	return (frame);
 }
 
@@ -50,7 +50,7 @@ t_stack *ft_ra(t_stack *stack_a)
 	stack_a->next = head;
 	head->prev = stack_a;
 	head->next = NULL;
-	// ft_putstr_fd("ra\n", 1);
+	ft_putstr_fd("ra\n", 1);
 	return (ret);
 }
 
@@ -70,7 +70,7 @@ t_stack *ft_rb(t_stack *stack_b)
 	stack_b->next = head;
 	head->prev = stack_b;
 	head->next = NULL;
-	// ft_putstr_fd("rb\n", 1);
+	ft_putstr_fd("rb\n", 1);
 	return (ret);
 }
 
@@ -88,7 +88,7 @@ t_stack *ft_rra(t_stack *stack_a)
 	stack_a->prev = tail;
 	tail->prev = NULL;
 	tail->next = stack_a;
-	// ft_putstr_fd("rra\n", 1);
+	ft_putstr_fd("rra\n", 1);
 	return (tail);
 }
 
@@ -110,7 +110,7 @@ t_stack *ft_rrb(t_stack *stack_b)
 		tail->prev = NULL;
 		tail->next = stack_b;
 	}
-	// ft_putstr_fd("rrb\n", 1);
+	ft_putstr_fd("rrb\n", 1);
 	return (tail);
 }
 
@@ -143,7 +143,7 @@ void    ft_pb(t_frame *frame)
 		node->next = NULL;
 		frame->stack_b = node;
 	}
-	// ft_putstr_fd("pb\n", 1);
+	ft_putstr_fd("pb\n", 1);
 }
 
 void    ft_pa(t_frame *frame)
@@ -179,5 +179,5 @@ void    ft_pa(t_frame *frame)
 			frame->stack_a = node;
 		}
 	}
-	// ft_putstr_fd("pa\n", 1);
+	ft_putstr_fd("pa\n", 1);
 }
