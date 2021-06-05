@@ -22,8 +22,7 @@ t_stack *sort3element(t_stack *stack)
 	int s_value;
 	int l_value;
 
-	while (stack->prev)
-		stack = stack->prev;
+	stack = get_head(stack);
 	f_value =  stack->value;
 	s_value =  stack->next->value;
 	l_value =  stack->next->next->value;

@@ -31,16 +31,16 @@ t_stack *add_list(t_stack *stack)
 	return (new_stack);
 }
 
-t_stack    *get_stack_a( char **argv, t_stack *stack_a)
+t_stack    *get_stack_a( char **new_argv, t_stack *stack_a)
 {
 	int	i;
 
 	stack_a = new_stack_a();
-	i = 1;
-	while (argv[i])
+	i = 0;
+	while (new_argv[i])
 	{
-		stack_a->value = ft_atoi(argv[i], 0);
-		if(argv[i + 1] != NULL)
+		stack_a->value = ft_atoi(new_argv[i], 0);
+		if(new_argv[i + 1] != NULL)
 			stack_a = add_list(stack_a);
 		i++;
 	}

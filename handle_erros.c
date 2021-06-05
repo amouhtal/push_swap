@@ -15,6 +15,7 @@ int	handl_error(char **argv)
 			{
 				if(!(i == 0 && (argv[j][i] == '-' || argv[j][i] == '+')))
 					{
+			
 						ft_putstr_fd("Error\n", 2);
 						return (0);
 					}

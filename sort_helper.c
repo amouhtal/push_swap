@@ -1,51 +1,51 @@
 #include "push_swap.h"
 
-int		if_in_chunk(t_frame frame,int start, int fin, int value)
+int		if_in_chunk(t_frame *frame,int start, int fin, int value)
 {
-	while (start <fin)
-		if (value == frame.sorted_table[start++])
+	while (start < fin)
+		if (value == frame->sorted_table[start++])
 			return (1);
 	return (0);
 }
 
-int		ft_scan_from_top(t_frame frame, int start, int fin)
+int		ft_scan_from_top(t_frame *frame, int start, int fin)
 {
 	int		lenght;
 	int		moves;
 
 	moves = 0;
-	while (frame.stack_a->prev)
-		frame.stack_a = frame.stack_a->prev;
-	while (frame.stack_a->next)
+	while (frame->stack_a->prev)
+		frame->stack_a = frame->stack_a->prev;
+	while (frame->stack_a->next)
 	{
-		if (if_in_chunk(frame, start, fin, frame.stack_a->value))
+		if (if_in_chunk(frame, start, fin, frame->stack_a->value))
 		{
-			frame.hold_first = frame.stack_a->value;
+			frame->hold_first = frame->stack_a->value;
 				return (moves);
 		}
-		frame.stack_a = frame.stack_a->next;
+		frame->stack_a = frame->stack_a->next;
 		moves++;
 	}
 	return (moves);
 
 }
 
-int		ft_scan_from_bottom(t_frame frame, int start, int fin)
+int		ft_scan_from_bottom(t_frame *frame, int start, int fin)
 {
 	int		lenght;
 	int		moves;
 
 	moves = 0;
-	while (frame.stack_a->next)
-		frame.stack_a = frame.stack_a->next;
-	while (frame.stack_a->prev)
+	while (frame->stack_a->next)
+		frame->stack_a = frame->stack_a->next;
+	while (frame->stack_a->prev)
 	{
-		if (if_in_chunk(frame, start, fin, frame.stack_a->value))
+		if (if_in_chunk(frame, start, fin, frame->stack_a->value))
 		{
-			frame.hold_second = frame.stack_a->value;
+			frame->hold_second = frame->stack_a->value;
 				return (moves);
 		}
-		frame.stack_a = frame.stack_a->prev;
+		frame->stack_a = frame->stack_a->prev;
 		moves++;
 	}
 	return (moves);
@@ -97,52 +97,3 @@ int		check_if_sorted(t_stack *stack_a)
 	}
 	return 0;
 }
-
-// int	ft_is_smaller(t_frame frame)
-// {
-// 	int		is_smaller;
-// 	int		var_to_push;
-
-// 	is_smaller = 1;
-// 	while (frame.stack_a->prev)
-// 		frame.stack_a = frame.stack_a->prev;
-// 	var_to_push = frame.stack_a->value;
-// 	if (frame.stack_b)
-// 	{
-// 		while (frame.stack_b->prev)
-// 			frame.stack_b = frame.stack_b->prev;
-// 		while (frame.stack_b->next)
-// 		{
-// 			if (frame.stack_b->value < var_to_push)
-// 				is_smaller = 0;
-// 			frame.stack_b = frame.stack_b->next;
-// 		}
-// 	}
-// 	return (is_smaller);
-// }
-
-// int	ft_is_bigger(t_frame frame)
-// {
-// 	int		is_bigger;
-// 	int		var_to_push;
-// 	int		inc;
-// 	int		pos;
-
-// 	inc = 0;
-// 	pos = 0;
-// 	while (frame.stack_b->prev)
-// 		frame.stack_b = frame.stack_b->prev;
-// 	var_to_push = frame.stack_b->value;
-// 	while (frame.stack_b->next)
-// 	{
-// 		if (var_to_push <= frame.stack_b->value)
-// 		{
-			
-// 			var_to_push = frame.stack_b->value;
-// 			pos = inc;
-// 		}
-// 		inc++;
-// 		frame.stack_b = frame.stack_b->next;
-// 	}
-// 	return (pos);
-// }

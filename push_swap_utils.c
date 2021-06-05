@@ -15,32 +15,6 @@ int ft_get_lengt(t_stack *stack)
 	return(i);
 }
 
-int		calcule_lenght(char **argv, int	lenght)
-{
-	int 	j = 0;
-	int		j2;
-	lenght--;
-	while(argv[j])
-	{
-		j2 = 0;
-		while(argv[j][j2])
-		{
-			if (argv[j][j2] == ' ')
-			{
-				while (argv[j][j2] == ' ')
-				{
-					j2++;
-				}
-				if (argv[j][j2])
-					lenght++;
-			}
-			j2++;
-		}
-		j++;
-	}
-	return (lenght);
-}
-
 int		ft_strchr(const char *s, int c)
 {
 	while (*s)
@@ -51,56 +25,101 @@ int		ft_strchr(const char *s, int c)
 	}
 	return (0);
 }
+int		calcule_lenght(char **argv, int	lenght)
+{
+	int 	j = 1;
+	int		j2;
+	char	**tab;
+	int count;
 
-int		*sorted_table(int lenght, char **argv)
+	count = 0;
+	lenght = 0;
+	while(argv[j])
+	{
+		j2 = 0;
+			count = 0;
+			if (ft_strchr(argv[j], ' '))
+			{
+				tab = ft_split(argv[j], ' ');
+				while (tab[count])
+				{
+					lenght++;
+					count++;
+				}
+			}
+			else
+				lenght++;
+		j++;
+	}
+	return (lenght);
+}
+
+
+char	**ft_new_arg(int	lenght, char **argv)
+{
+	char	**new_argv;
+	char	**splited_tab;
+	int		i;
+	int		j;
+	int 	j2;
+
+	j2 = 0;
+	i = 1;
+	j = 0;
+	new_argv = (char **)malloc(sizeof(char*) * lenght + 1);
+	while (argv[i] && argv[i][0])
+	{
+		if (ft_strchr(argv[i], ' '))
+		{
+			j2 = 0;
+			splited_tab = ft_split(argv[i], ' ');
+			while (splited_tab[j2])
+			{
+				new_argv[j] = ft_strdup(splited_tab[j2]);
+				j++;
+				j2++;
+			}
+		}
+		else
+		{
+			new_argv[j] = ft_strdup(argv[i]);
+			j++;
+		}
+		i++;
+	}
+	new_argv[j] = NULL;
+	return (new_argv);
+}
+
+int		*sorted_table(int lenght, char **argv, t_frame *frame)
 {
 	int		i;
 	int		tmp;
 	int		*tab;
 	int 	check;
 	char	**new_argv;
-	char	**new_argv2;
-	int		lenght2;
 	int		j = 0;
-	int		jj2 = 0;
-	int		jjj3 = 0;
+
 	i = 0;
 	check = 0;
 	lenght = calcule_lenght(argv, lenght);
-	new_argv = (char **)malloc(sizeof(char*) * lenght + 1);
-
-	while (argv[jjj3])
-	{
-		if (ft_strchr(argv[j], ' '))
-		{
-			new_argv2 = ft_split(argv[j], ' ');
-			while (new_argv2[jj2])
-			{
-				new_argv[j] = ft_strdup(new_argv2[jj2]);
-				printf("(: %s\n", new_argv2[jj2]);
-				jj2++;
-				j++;
-			}
-		}
-		else
-		{
-			new_argv[j] = ft_strdup(argv[j + 1]);
-			j++;
-		}
-		jjj3++;
-	}
-		puts("guards");
+	new_argv = ft_new_arg(lenght, argv);
+	i = 0;
+	if (!handl_error(new_argv))
+		return (0);
+	frame->stack_a = get_stack_a(new_argv, frame->stack_a);
 	tab = malloc(sizeof(int) * lenght);
-	while (i < lenght)
+
+	while (new_argv[i])
 	{
-		tab[i] = ft_atoi(argv[i + 1], &check);
+		tab[i] = ft_atoi(new_argv[i], &check);
 		if (check)
 			exit(1);
 		i++;
 	}
-	printf("==> %d\n", lenght);
 	i = 0;
-	while (i++ < lenght - 1)
+	while (i < lenght - 1)
+	{
 		if (tab[i] > tab[i + 1])
 		{ 
 			tmp = tab[i];
@@ -108,6 +127,9 @@ int		*sorted_table(int lenght, char **argv)
 			tab[i + 1] = tmp;
 			i = -1;
 		}
+		i++;
+	}
+
 	return (tab);
 }
 
