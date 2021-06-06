@@ -1,19 +1,8 @@
 #include "push_swap.h"
 
-void ft_print_stack(t_stack *stack)
+t_stack	*new_stack_a(void)
 {
-	while (stack && stack->prev)
-		stack = stack->prev;
-	while (stack)
-	{
-		printf("%d\n",stack->value);
-		stack = stack->next;
-	}
-}
-
-t_stack *new_stack_a()
-{
-	t_stack *stack_a;
+	t_stack	*stack_a;
 
 	stack_a = malloc(sizeof(t_stack));
 	stack_a->next = NULL;
@@ -21,9 +10,9 @@ t_stack *new_stack_a()
 	return (stack_a);
 }
 
-t_stack *add_list(t_stack *stack)
+t_stack	*add_list(t_stack *stack)
 {
-	t_stack *new_stack;
+	t_stack	*new_stack;
 
 	new_stack = new_stack_a();
 	stack->next = new_stack;
@@ -31,7 +20,7 @@ t_stack *add_list(t_stack *stack)
 	return (new_stack);
 }
 
-t_stack    *get_stack_a( char **new_argv, t_stack *stack_a)
+t_stack	*get_stack_a( char **new_argv, t_stack *stack_a)
 {
 	int	i;
 
@@ -40,7 +29,7 @@ t_stack    *get_stack_a( char **new_argv, t_stack *stack_a)
 	while (new_argv[i])
 	{
 		stack_a->value = ft_atoi(new_argv[i], 0);
-		if(new_argv[i + 1] != NULL)
+		if (new_argv[i + 1] != NULL)
 			stack_a = add_list(stack_a);
 		i++;
 	}

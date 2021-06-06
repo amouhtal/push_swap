@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-int		if_in_chunk(t_frame *frame,int start, int fin, int value)
+int	if_in_chunk(t_frame *frame, int start, int fin, int value)
 {
 	while (start < fin)
 		if (value == frame->sorted_table[start++])
@@ -8,7 +8,7 @@ int		if_in_chunk(t_frame *frame,int start, int fin, int value)
 	return (0);
 }
 
-int		ft_scan_from_top(t_frame *frame, int start, int fin)
+int	ft_scan_from_top(t_frame *frame, int start, int fin)
 {
 	int		lenght;
 	int		moves;
@@ -21,16 +21,15 @@ int		ft_scan_from_top(t_frame *frame, int start, int fin)
 		if (if_in_chunk(frame, start, fin, frame->stack_a->value))
 		{
 			frame->hold_first = frame->stack_a->value;
-				return (moves);
+			return (moves);
 		}
 		frame->stack_a = frame->stack_a->next;
 		moves++;
 	}
 	return (moves);
-
 }
 
-int		ft_scan_from_bottom(t_frame *frame, int start, int fin)
+int	ft_scan_from_bottom(t_frame *frame, int start, int fin)
 {
 	int		lenght;
 	int		moves;
@@ -43,14 +42,13 @@ int		ft_scan_from_bottom(t_frame *frame, int start, int fin)
 		if (if_in_chunk(frame, start, fin, frame->stack_a->value))
 		{
 			frame->hold_second = frame->stack_a->value;
-				return (moves);
+			return (moves);
 		}
 		frame->stack_a = frame->stack_a->prev;
 		moves++;
 	}
 	return (moves);
 }
-
 
 int	ft_get_biggest(t_frame frame)
 {
@@ -77,10 +75,10 @@ int	ft_get_biggest(t_frame frame)
 	return (pos);
 }
 
-int		check_if_sorted(t_stack *stack_a)
+int	check_if_sorted(t_stack *stack_a)
 {
-	int flag;
-	int lenght;
+	int	flag;
+	int	lenght;
 
 	flag = 0;
 	lenght = ft_get_lengt(stack_a);
@@ -95,5 +93,5 @@ int		check_if_sorted(t_stack *stack_a)
 		stack_a = stack_a->next;
 		lenght--;
 	}
-	return 0;
+	return (0);
 }

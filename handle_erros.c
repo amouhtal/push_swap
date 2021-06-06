@@ -1,19 +1,19 @@
 #include "push_swap.h"
 
-int	handl_error(char **argv)
+int	handl_error(char **new_argv)
 {
 	int i;
 	int j;
 
-	j = 1;
-	while (argv[j])
+	j = 0;
+	while (new_argv[j])
 	{
 		i = 0;
-		while (i < argv[j][i])
+		while (i < new_argv[j][i])
 		{
-			if (ft_isdigit(argv[j][i]) == 0)
+			if (ft_isdigit(new_argv[j][i]) == 0)
 			{
-				if(!(i == 0 && (argv[j][i] == '-' || argv[j][i] == '+')))
+				if(!(i == 0 && (new_argv[j][i] == '-' || new_argv[j][i] == '+')))
 					{
 			
 						ft_putstr_fd("Error\n", 2);

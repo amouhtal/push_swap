@@ -1,4 +1,14 @@
 #include "push_swap.h"
+void ft_print_stack(t_stack *stack)
+{
+	while (stack && stack->prev)
+		stack = stack->prev;
+	while (stack)
+	{
+		printf("%d\n",stack->value);
+		stack = stack->next;
+	}
+}
 
 t_frame	*pushin_chunk(t_frame *frame, int start, int fin)
 {
@@ -80,7 +90,13 @@ int	above_100element(t_frame *frame)
 
 void	sort_by_lenght(t_frame *frame)
 {
-	if (frame->stack_lengt == 3)
+	if (frame->stack_lengt == 2 || frame->stack_lengt == 1)
+	{
+		frame->stack_a = get_head(frame->stack_a);
+		if (frame->stack_a->value > frame->stack_a->next->value)
+			frame->stack_a = ft_sa(frame->stack_a);
+	}
+	else if (frame->stack_lengt == 3)
 		frame->stack_a = sort3element(frame->stack_a);
 	else if (frame->stack_lengt > 3 && frame->stack_lengt <= 5)
 		frame->stack_a = sort5element(frame);
@@ -89,6 +105,7 @@ void	sort_by_lenght(t_frame *frame)
 	else
 		above_100element(frame);
 }
+
 
 int	main(int argc, char **argv)
 {
@@ -101,18 +118,17 @@ int	main(int argc, char **argv)
 	i = 0;
 	if (argc > 1)
 	{
-		frame.sorted_table = sorted_table(argc, argv, &frame);
+		initilise(argc, argv, &frame);
 		frame.stack_lengt = ft_get_lengt(frame.stack_a);
-		if (!deplicat_nbr(frame.sorted_table, (lenght = ft_get_lengt(frame.stack_a))))
+		lenght = ft_get_lengt(frame.stack_a);
+		if (!deplicat_nbr(frame.sorted_table, lenght))
 		{
 			ft_putstr_fd("Error\n", 2);
 			return (0);
 		}
 		if (check_if_sorted(frame.stack_a))
-		{
 			sort_by_lenght(&frame);
-			ft_print_stack(frame.stack_a);
-		}	
+		ft_print_stack(frame.stack_a);
 		ft_free(frame.stack_a);
 		free(frame.sorted_table);
 	}

@@ -2,9 +2,9 @@
 
 int	ft_move_to_top2(t_frame *frame )
 {
-	int dec;
-	int inc;
-	int half;
+	int	dec;
+	int	inc;
+	int	half;
 
 	dec = ft_get_biggest((*frame));
 	half = ft_get_lengt(frame->stack_b) / 2;
@@ -35,7 +35,7 @@ t_frame	*ft_moving_chunk(t_frame *frame, int chunk_lenght, int	chunk_start)
 {
 	int	i;
 	int	inc;
-	int k;
+	int	k;
 
 	i = 0;
 	k = 0;
@@ -48,14 +48,14 @@ t_frame	*ft_moving_chunk(t_frame *frame, int chunk_lenght, int	chunk_start)
 			frame = pushin_chunk(frame, chunk_start, chunk_lenght);
 			k++;
 		}
-		chunk_start  += inc;
+		chunk_start += inc;
 		chunk_lenght += inc;
 		i++;
 	}
 	return (frame);
 }
 
-int		sort100element(t_frame *frame)
+int	sort100element(t_frame *frame)
 {
 	frame = ft_moving_chunk(frame, 0, 0);
 	frame->stack_lengt = ft_get_lengt(frame->stack_a);
