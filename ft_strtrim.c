@@ -6,7 +6,7 @@
 /*   By: amouhtal <amouhtal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 20:13:53 by amouhtal          #+#    #+#             */
-/*   Updated: 2021/06/04 17:31:03 by amouhtal         ###   ########.fr       */
+/*   Updated: 2021/06/06 19:40:51 by amouhtal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,6 @@ char			*ft_strtrim(char const *s1, char const *set)
 			break ;
 		len--;
 	}
+	free(str);
 	return (ft_strdup(str));
 }

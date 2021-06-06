@@ -121,7 +121,7 @@ int	main(int argc, char **argv)
 		initilise(argc, argv, &frame);
 		frame.stack_lengt = ft_get_lengt(frame.stack_a);
 		lenght = ft_get_lengt(frame.stack_a);
-		if (!deplicat_nbr(frame.sorted_table, lenght))
+		if (!deplicat_nbr(&frame, frame.sorted_table, lenght))
 		{
 			ft_putstr_fd("Error\n", 2);
 			return (0);

@@ -18,7 +18,7 @@ int	ft_get_lengt(t_stack *stack)
 int	calcule_lenght(char **argv, int	lenght)
 {
 	int		j;
-	int		j2;
+	int		i;
 	char	**tab;
 	int		count;
 
@@ -27,13 +27,14 @@ int	calcule_lenght(char **argv, int	lenght)
 	j = 1;
 	while (argv[j])
 	{
-		j2 = 0;
+		i = 0;
 		count = 0;
 		if (ft_strchr(argv[j], ' '))
 		{
 			tab = ft_split(argv[j], ' ');
 			while (tab[count++])
 				lenght++;
+			ft_free_tab2d(tab);
 		}
 		else
 			lenght++;
@@ -42,9 +43,8 @@ int	calcule_lenght(char **argv, int	lenght)
 	return (lenght);
 }
 
-char	**ft_new_arg(int	lenght, char **argv)
+char	**ft_new_arg(int	lenght, char **argv, char **new_argv)
 {
-	char	**new_argv;
 	char	**splited_tab;
 	int		i;
 	int		j;
@@ -62,6 +62,7 @@ char	**ft_new_arg(int	lenght, char **argv)
 			splited_tab = ft_split(argv[i], ' ');
 			while (splited_tab[j2])
 				new_argv[j++] = ft_strdup(splited_tab[j2++]);
+			ft_free_tab2d(splited_tab);
 		}
 		else
 			new_argv[j++] = ft_strdup(argv[i]);
@@ -102,11 +103,11 @@ void	initilise(int lenght, char **argv, t_frame *frame)
 	j = 0;
 	check = 0;
 	lenght = calcule_lenght(argv, lenght);
-	new_argv = ft_new_arg(lenght, argv);
+	exit(0);
 	i = 0;
+	new_argv = ft_new_arg(lenght, argv, new_argv);
 	if (!handl_error(new_argv))
 		exit(1);
-	frame->stack_a = get_stack_a(new_argv, frame->stack_a);
 	frame->sorted_table = malloc(sizeof(int) * lenght);
 	while (new_argv[i])
 	{
@@ -115,5 +116,7 @@ void	initilise(int lenght, char **argv, t_frame *frame)
 			exit(1);
 		i++;
 	}
+	frame->stack_a = get_stack_a(new_argv, frame->stack_a);
+	ft_free_tab2d(new_argv);
 	frame->sorted_table = sort_table(frame->sorted_table, lenght);
 }

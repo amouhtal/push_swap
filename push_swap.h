@@ -35,7 +35,7 @@ void		ft_pb(t_frame *frame);
 void		ft_pa(t_frame *frame);
 int			handl_error(char **argv);
 void		ft_free(t_stack *stack);
-int			deplicat_nbr(int	*table, int lenght);
+int			deplicat_nbr(t_frame *frame, int	*table, int lenght);
 void		ft_putstr_fd(char *s, int fd);
 int			above_100element(t_frame *frame);
 void		initilise(int lenght, char **argv, t_frame *frame);
@@ -61,4 +61,5 @@ int			if_in_chunk(t_frame *frame, int start, int fin, int value);
 int			ft_scan_from_top(t_frame *frame, int start, int fin);
 int			ft_scan_from_bottom(t_frame *frame, int start, int fin);
 int			ft_strchr(const char *s, int c);
+void		ft_free_tab2d(char **tab);
 #endif

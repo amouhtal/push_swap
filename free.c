@@ -19,3 +19,20 @@ void	ft_free(t_stack *stack)
 		i++;
 	}
 }
+
+void	ft_free_tab2d(char **tab)
+{
+	int	i;
+
+	i = 0;
+	if (tab)
+	{
+		while (tab[i])
+		{
+			if (tab[i])
+				free(tab[i]);
+			i++;
+		}
+		free(tab);
+	}
+}

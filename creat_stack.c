@@ -23,12 +23,16 @@ t_stack	*add_list(t_stack *stack)
 t_stack	*get_stack_a( char **new_argv, t_stack *stack_a)
 {
 	int	i;
+	int check;
 
 	stack_a = new_stack_a();
 	i = 0;
+	check = 0;
 	while (new_argv[i])
 	{
-		stack_a->value = ft_atoi(new_argv[i], 0);
+		stack_a->value = ft_atoi(new_argv[i], &check);
+		if (check)
+			exit(1);
 		if (new_argv[i + 1] != NULL)
 			stack_a = add_list(stack_a);
 		i++;

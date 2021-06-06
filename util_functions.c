@@ -38,7 +38,7 @@ long long	ft_atoi(const char *str, int *check)
 	if ((res * sign) > 2147483647 || (res * sign) < -2147483648)
 	{
 		ft_putstr_fd("Error\n", 2);
-		*check = 1;
+		*(check) = 1;
 	}
 	return (res * sign);
 }

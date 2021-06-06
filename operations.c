@@ -1,8 +1,8 @@
 #include "push_swap.h"
 
-t_stack *ft_sa(t_stack *stack_a)
+t_stack	*ft_sa(t_stack *stack_a)
 {
-	int tmp;
+	int	tmp;
 
 	while (stack_a->prev)
 		stack_a = stack_a->prev;
@@ -13,9 +13,9 @@ t_stack *ft_sa(t_stack *stack_a)
 	return (stack_a);
 }
 
-t_stack *ft_sb(t_stack *stack_b)
+t_stack	*ft_sb(t_stack *stack_b)
 {
-	int tmp;
+	int	tmp;
 
 	while (stack_b->prev)
 		stack_b = stack_b->prev;
@@ -26,19 +26,19 @@ t_stack *ft_sb(t_stack *stack_b)
 	return (stack_b);
 }
 
-t_frame *ft_ss(t_frame *frame)
-{
-	ft_sa(frame->stack_a);
-	ft_sb(frame->stack_b);
-	ft_putstr_fd("ss\n", 1);
-	return (frame);
-}
+// t_frame	*ft_ss(t_frame *frame)
+// {
+// 	ft_sa(frame->stack_a);
+// 	ft_sb(frame->stack_b);
+// 	ft_putstr_fd("ss\n", 1);
+// 	return (frame);
+// }
 
-
-t_stack *ft_ra(t_stack *stack_a)
+t_stack	*ft_ra(t_stack	*stack_a)
 {
-	t_stack *head;
-	t_stack *ret;
+	t_stack	*head;
+	t_stack	*ret;
+
 	while (stack_a->prev)
 		stack_a = stack_a->prev;
 	head = stack_a;
@@ -54,10 +54,10 @@ t_stack *ft_ra(t_stack *stack_a)
 	return (ret);
 }
 
-t_stack *ft_rb(t_stack *stack_b)
+t_stack	*ft_rb(t_stack *stack_b)
 {
-	t_stack *head;
-	t_stack *ret;
+	t_stack	*head;
+	t_stack	*ret;
 
 	while (stack_b->prev)
 		stack_b = stack_b->prev;
@@ -74,9 +74,9 @@ t_stack *ft_rb(t_stack *stack_b)
 	return (ret);
 }
 
-t_stack *ft_rra(t_stack *stack_a)
+t_stack	*ft_rra(t_stack *stack_a)
 {
-	t_stack *tail;
+	t_stack	*tail;
 
 	while (stack_a->next)
 		stack_a = stack_a->next;
@@ -92,9 +92,9 @@ t_stack *ft_rra(t_stack *stack_a)
 	return (tail);
 }
 
-t_stack *ft_rrb(t_stack *stack_b)
+t_stack	*ft_rrb(t_stack	*stack_b)
 {
-	t_stack *tail;
+	t_stack	*tail;
 
 	tail = NULL;
 	if (ft_get_lengt(stack_b) > 1)
@@ -114,17 +114,27 @@ t_stack *ft_rrb(t_stack *stack_b)
 	return (tail);
 }
 
-void    ft_pb(t_frame *frame)
+t_stack	*ft_pb_util(t_frame *frame, t_stack	*node)
 {
-	t_stack *node;
-	if(frame->stack_b != NULL)
+		frame->stack_a = get_head(frame->stack_a);
+		node = frame->stack_a;
+		frame->stack_a = frame->stack_a->next;
+		frame->stack_a->prev = NULL;
+		node->next = NULL;
+		frame->stack_b = node;
+		return (node);
+}
+
+void	ft_pb(t_frame *frame)
+{
+	t_stack	*node;
+
+	if (frame->stack_b != NULL)
 	{
-		while (frame->stack_b->prev)
-			frame->stack_b = frame->stack_b->prev;
-		if(frame->stack_a)
+		frame->stack_b = get_head(frame->stack_b);
+		if (frame->stack_a)
 		{
-			while (frame->stack_a->prev)
-				frame->stack_a = frame->stack_a->prev;
+			frame->stack_a = get_head(frame->stack_a);
 			node = frame->stack_a;
 			frame->stack_a = frame->stack_a->next;
 			if (frame->stack_a)
@@ -134,50 +144,43 @@ void    ft_pb(t_frame *frame)
 		}
 	}
 	else
-	{
-		while (frame->stack_a->prev)
-			frame->stack_a = frame->stack_a->prev;
-		node = frame->stack_a;
-		frame->stack_a = frame->stack_a->next;
-		frame->stack_a->prev = NULL;
-		node->next = NULL;
-		frame->stack_b = node;
-	}
+		node = ft_pb_util(frame, node);
 	ft_putstr_fd("pb\n", 1);
 }
 
-void    ft_pa(t_frame *frame)
+t_stack	*ft_pa_util(t_frame *frame, t_stack *node)
 {
-	t_stack *node;
-	if(frame->stack_a != NULL)
+	if (frame->stack_b)
 	{
-		while (frame->stack_a->prev)
-			frame->stack_a = frame->stack_a->prev;
-		if(frame->stack_b)
-		{	
-			while (frame->stack_b->prev)
-				frame->stack_b = frame->stack_b->prev;
+		frame->stack_b = get_head(frame->stack_b);
+		node = frame->stack_b;
+		frame->stack_b = frame->stack_b->next;
+		frame->stack_b->prev = NULL;
+		node->next = NULL;
+		frame->stack_a = node;
+	}
+	return (node);
+}
+
+void	ft_pa(t_frame *frame)
+{
+	t_stack	*node;
+
+	if (frame->stack_a != NULL)
+	{
+		frame->stack_a = get_head(frame->stack_a);
+		if (frame->stack_b)
+		{
+			frame->stack_b = get_head(frame->stack_b);
 			node = frame->stack_b;
 			frame->stack_b = frame->stack_b->next;
 			if (frame->stack_b)
 				frame->stack_b->prev = NULL;
-
 			frame->stack_a->prev = node;
 			node->next = frame->stack_a;
 		}
 	}
 	else
-	{
-		if(frame->stack_b)
-		{
-			while (frame->stack_b->prev)
-				frame->stack_b = frame->stack_b->prev;
-			node = frame->stack_b;
-			frame->stack_b = frame->stack_b->next;
-			frame->stack_b->prev = NULL;
-			node->next = NULL;
-			frame->stack_a = node;
-		}
-	}
+		node = ft_pa_util(frame, node);
 	ft_putstr_fd("pa\n", 1);
 }
