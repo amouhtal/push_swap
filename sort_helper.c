@@ -6,7 +6,7 @@
 /*   By: amouhtal <amouhtal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 13:01:27 by amouhtal          #+#    #+#             */
-/*   Updated: 2021/06/07 14:42:45 by amouhtal         ###   ########.fr       */
+/*   Updated: 2021/06/07 15:09:46 by amouhtal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,9 +96,7 @@ int	check_if_sorted(t_stack *stack_a)
 	while (lenght > 1)
 	{
 		if (stack_a->value > stack_a->next->value)
-		{
 			return (1);
-		}
 		stack_a = stack_a->next;
 		lenght--;
 	}

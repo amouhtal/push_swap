@@ -6,11 +6,11 @@
 /*   By: amouhtal <amouhtal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 14:46:02 by amouhtal          #+#    #+#             */
-/*   Updated: 2021/06/07 14:46:04 by amouhtal         ###   ########.fr       */
+/*   Updated: 2021/06/07 18:40:35 by amouhtal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 static int	cases(int f_value, int	s_value, int l_value)
 {

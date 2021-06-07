@@ -6,11 +6,11 @@
 /*   By: amouhtal <amouhtal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 14:45:50 by amouhtal          #+#    #+#             */
-/*   Updated: 2021/06/07 14:45:51 by amouhtal         ###   ########.fr       */
+/*   Updated: 2021/06/07 18:40:42 by amouhtal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 static int	ft_move_to_top2(t_frame *frame )
 {
@@ -42,7 +42,8 @@ t_frame	*pushin_back(t_frame *frame)
 	return (frame);
 }
 
-static t_frame	*ft_moving_chunk(t_frame *frame, int chunk_lenght, int	chunk_start)
+static t_frame	*ft_moving_chunk(t_frame *frame,
+int chunk_lenght, int	chunk_start)
 {
 	int	i;
 	int	inc;

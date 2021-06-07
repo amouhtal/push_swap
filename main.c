@@ -6,22 +6,11 @@
 /*   By: amouhtal <amouhtal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 13:10:19 by amouhtal          #+#    #+#             */
-/*   Updated: 2021/06/07 14:39:52 by amouhtal         ###   ########.fr       */
+/*   Updated: 2021/06/07 15:06:05 by amouhtal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	ft_print_stack(t_stack *stack)
-{
-	while (stack && stack->prev)
-		stack = stack->prev;
-	while (stack)
-	{
-		printf("%d\n", stack->value);
-		stack = stack->next;
-	}
-}
 
 t_frame	*pushin_chunk(t_frame *frame, int start, int fin)
 {
@@ -113,7 +102,6 @@ int	main(int argc, char **argv)
 		}
 		if (check_if_sorted(frame.stack_a))
 			sort_by_lenght(&frame);
-		ft_print_stack(frame.stack_a);
 		ft_free(frame.stack_a);
 		free(frame.sorted_table);
 	}

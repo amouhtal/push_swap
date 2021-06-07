@@ -6,11 +6,11 @@
 /*   By: amouhtal <amouhtal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 13:01:01 by amouhtal          #+#    #+#             */
-/*   Updated: 2021/06/07 14:40:24 by amouhtal         ###   ########.fr       */
+/*   Updated: 2021/06/07 18:38:33 by amouhtal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 static t_stack	*ft_pa_util(t_frame *frame, t_stack *node)
 {
