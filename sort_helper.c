@@ -6,13 +6,13 @@
 /*   By: amouhtal <amouhtal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 13:01:27 by amouhtal          #+#    #+#             */
-/*   Updated: 2021/06/07 13:01:29 by amouhtal         ###   ########.fr       */
+/*   Updated: 2021/06/07 14:42:45 by amouhtal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	if_in_chunk(t_frame *frame, int start, int fin, int value)
+static int	if_in_chunk(t_frame *frame, int start, int fin, int value)
 {
 	while (start < fin)
 		if (value == frame->sorted_table[start++])
@@ -22,7 +22,6 @@ int	if_in_chunk(t_frame *frame, int start, int fin, int value)
 
 int	ft_scan_from_top(t_frame *frame, int start, int fin)
 {
-	int		lenght;
 	int		moves;
 
 	moves = 0;
@@ -43,7 +42,6 @@ int	ft_scan_from_top(t_frame *frame, int start, int fin)
 
 int	ft_scan_from_bottom(t_frame *frame, int start, int fin)
 {
-	int		lenght;
 	int		moves;
 
 	moves = 0;
@@ -64,7 +62,6 @@ int	ft_scan_from_bottom(t_frame *frame, int start, int fin)
 
 int	ft_get_biggest(t_frame frame)
 {
-	int		is_bigger;
 	int		var_to_push;
 	int		inc;
 	int		pos;

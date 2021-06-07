@@ -6,7 +6,7 @@
 /*   By: amouhtal <amouhtal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 13:10:19 by amouhtal          #+#    #+#             */
-/*   Updated: 2021/06/07 13:11:11 by amouhtal         ###   ########.fr       */
+/*   Updated: 2021/06/07 14:39:52 by amouhtal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ t_frame	*pushin_chunk(t_frame *frame, int start, int fin)
 {
 	int		hold_first_moves;
 	int		hold_second_moves;
-	int		half;
-	t_frame	sframe;
 
 	hold_first_moves = ft_scan_from_top(frame, start, fin);
 	hold_second_moves = ft_scan_from_bottom(frame, start, fin);
@@ -50,30 +48,7 @@ t_frame	*pushin_chunk(t_frame *frame, int start, int fin)
 	return (frame);
 }
 
-t_stack	*sort10element(t_frame frame)
-{
-	int		middle_point;
-	int		i;
-	t_stack	*tmp;
-
-	i = 0;
-	middle_point = frame.sorted_table[frame.stack_lengt / 2];
-	while (frame.stack_a->prev)
-		frame.stack_a = frame.stack_a->prev;
-	while (i < frame.stack_lengt)
-	{
-		if (frame.stack_a->value < middle_point)
-			ft_pb(&frame);
-		else
-			frame.stack_a = ft_ra(frame.stack_a);
-		i++;
-	}
-	while (frame.stack_b)
-		ft_pb(&frame);
-	return (frame.stack_a);
-}
-
-int	above_100element(t_frame *frame)
+static int	above_100element(t_frame *frame)
 {
 	int	chunk_lenght;
 	int	chunk_start;
@@ -101,7 +76,7 @@ int	above_100element(t_frame *frame)
 	return (1);
 }
 
-void	sort_by_lenght(t_frame *frame)
+static void	sort_by_lenght(t_frame *frame)
 {
 	if (frame->stack_lengt == 2 || frame->stack_lengt == 1)
 	{
@@ -123,8 +98,6 @@ int	main(int argc, char **argv)
 {
 	int		i;
 	t_frame	frame;
-	t_stack	*test;
-	char	**new_arg;
 	int		lenght;
 
 	i = 0;

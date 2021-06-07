@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort3element.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amouhtal <amouhtal@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/06/07 14:46:02 by amouhtal          #+#    #+#             */
+/*   Updated: 2021/06/07 14:46:04 by amouhtal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-int	cases(int f_value, int	s_value, int l_value)
+static int	cases(int f_value, int	s_value, int l_value)
 {
 	if (f_value > s_value && s_value < l_value && l_value > f_value)
 		return (1);

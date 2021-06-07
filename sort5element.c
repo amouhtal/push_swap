@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort5element.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amouhtal <amouhtal@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/06/07 14:45:55 by amouhtal          #+#    #+#             */
+/*   Updated: 2021/06/07 14:45:57 by amouhtal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 t_stack	*get_head(t_stack *stack)
@@ -14,7 +26,7 @@ t_stack	*get_tail(t_stack *stack)
 	return (stack);
 }
 
-void	under_mid_point(t_frame	*frame, int middle_point)
+static void	under_mid_point(t_frame	*frame, int middle_point)
 {
 	int	i;
 
@@ -29,7 +41,7 @@ void	under_mid_point(t_frame	*frame, int middle_point)
 	}
 }
 
-void	sorted_b_to_a(t_frame	*frame)
+static void	sorted_b_to_a(t_frame	*frame)
 {
 	if (frame->stack_lengt == 3)
 	{

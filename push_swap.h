@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amouhtal <amouhtal@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/06/07 14:46:11 by amouhtal          #+#    #+#             */
+/*   Updated: 2021/06/07 14:46:12 by amouhtal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 # include    <stdio.h>
@@ -37,7 +49,6 @@ int			handl_error(char **argv);
 void		ft_free(t_stack *stack);
 int			deplicat_nbr(t_frame *frame, int	*table, int lenght);
 void		ft_putstr_fd(char *s, int fd);
-int			above_100element(t_frame *frame);
 void		initilise(int lenght, char **argv, t_frame *frame);
 size_t		ft_strlen(const char *s);
 char		*ft_strtrim(char const *s1, char const *set);
@@ -57,7 +68,6 @@ t_stack		*get_head(t_stack *stack);
 t_stack		*add_list(t_stack *stack);
 t_stack		*get_stack_a(char **argv, t_stack *stack_a);
 int			check_if_sorted(t_stack *stack_a);
-int			if_in_chunk(t_frame *frame, int start, int fin, int value);
 int			ft_scan_from_top(t_frame *frame, int start, int fin);
 int			ft_scan_from_bottom(t_frame *frame, int start, int fin);
 int			ft_strchr(const char *s, int c);

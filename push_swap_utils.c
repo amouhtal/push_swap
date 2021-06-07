@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap_utils.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amouhtal <amouhtal@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/06/07 14:46:17 by amouhtal          #+#    #+#             */
+/*   Updated: 2021/06/07 14:46:19 by amouhtal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	ft_get_lengt(t_stack *stack)
@@ -15,7 +27,7 @@ int	ft_get_lengt(t_stack *stack)
 	return (i);
 }
 
-int	calcule_lenght(char **argv, int	lenght)
+static int	calcule_lenght(char **argv, int	lenght)
 {
 	int		j;
 	int		i;
@@ -43,7 +55,7 @@ int	calcule_lenght(char **argv, int	lenght)
 	return (lenght);
 }
 
-char	**ft_new_arg(int	lenght, char **argv, char **new_argv)
+static char	**ft_new_arg(int	lenght, char **argv, char **new_argv)
 {
 	char	**splited_tab;
 	int		i;
@@ -72,7 +84,7 @@ char	**ft_new_arg(int	lenght, char **argv, char **new_argv)
 	return (new_argv);
 }
 
-int	*sort_table(int	*tab, int lenght)
+static int	*sort_table(int	*tab, int lenght)
 {
 	int	tmp;
 	int	i;
@@ -102,6 +114,7 @@ void	initilise(int lenght, char **argv, t_frame *frame)
 	i = 0;
 	j = 0;
 	check = 0;
+	new_argv = NULL;
 	lenght = calcule_lenght(argv, lenght);
 	i = 0;
 	new_argv = ft_new_arg(lenght, argv, new_argv);

@@ -6,7 +6,7 @@
 /*   By: amouhtal <amouhtal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 13:06:42 by amouhtal          #+#    #+#             */
-/*   Updated: 2021/06/07 13:10:00 by amouhtal         ###   ########.fr       */
+/*   Updated: 2021/06/07 14:36:54 by amouhtal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	handl_error(char **new_argv)
 			if (ft_isdigit(new_argv[j][i]) == 0)
 			{
 				if (!(i == 0 && (new_argv[j][i] == '-'
-					|| new_argv[j][i] == '+')))
+						|| new_argv[j][i] == '+')))
 				{
 					ft_putstr_fd("Error\n", 2);
 					ft_free_tab2d(new_argv);
