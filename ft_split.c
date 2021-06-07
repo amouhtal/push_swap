@@ -1,80 +1,105 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amouhtal <amouhtal@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/06/07 12:57:49 by amouhtal          #+#    #+#             */
+/*   Updated: 2021/06/07 12:58:46 by amouhtal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-static int countwords(char *ptr, char c)
+static int	ft_count_words(const char *s, char c)
 {
-	int i;
-	int count;
+	int		i;
+	int		count;
 
 	i = 0;
 	count = 0;
-	while (ptr[i])
+	while (s[i] != '\0')
 	{
-		if (ptr[i] == c && ptr[i + 1] != c)
+		if (s[i] != c && (s[i + 1] == c || s[i + 1] == '\0'))
 			count++;
 		i++;
 	}
-	return (count + 1);
+	return (count);
 }
 
-static char *affectation(char c, int *ii, char *ptr)
+static char	*ft_print_tabl(const char *s, int deb, int fin)
 {
-	int k;
-	char *p;
-	int nn;
+	int		i;
+	char	*tabl;
 
-	k = 0;
-	nn = 0;
-	while (ptr[*ii + nn] != c && ptr[*ii + nn])
-		nn++;
-	if (!(p = (char *)malloc(sizeof(char) * (nn + 1))))
+	i = deb;
+	tabl = malloc((fin - deb + 2) * sizeof(char));
+	if (tabl == NULL)
 		return (NULL);
-	while (nn > k)
+	while (i <= fin)
 	{
-		p[k] = ptr[k + *ii];
-		k++;
-	}
-	p[k] = '\0';
-	*ii = nn + *ii;
-	return (p);
-}
-
-static void free_news(char **news)
-{
-	int i;
-
-	i = 0;
-	while (news[i])
-	{
-		free(news[i]);
+		tabl[i - deb] = s[i];
 		i++;
 	}
+	tabl[i - deb] = '\0';
+	return (tabl);
 }
 
-char **ft_split(char const *s, char c)
+static int	ft_check_allocation(char **str, int j)
 {
-	int index;
-	char **news;
-	int i;
-	char *ptr;
+	int		k;
 
-	if ((ptr = ft_strtrim(s, &c)) == NULL)
-		return (0);
-	if (!(news = (char **)malloc(sizeof(char *) * (countwords(ptr, c) + 1))))
-		return (0);
-	i = 0;
-	index = -1;
-	while (ptr[i])
+	k = 0;
+	if (str[j] == NULL)
 	{
-		while (ptr[i] == c)
-			i++;
-		if ((news[++index] = affectation(c, &i, ptr)) == NULL)
+		while (k < j)
 		{
-			free_news(news);
-			free(ptr);
-			return (0);
+			free(str[k]);
+			k++;
 		}
+		free(str);
+		return (0);
 	}
-	news[index + 1] = NULL;
-	free(ptr);
-	return (news);
+	return (1);
+}
+
+static char	**ft_fill_table(const char *s, char c, char **str)
+{
+	int		i;
+	int		deb;
+	int		fin;
+	int		j;
+
+	i = 0;
+	j = 0;
+	while (s[i] != '\0')
+	{
+		if ((i == 0 && s[0] != c) || (s[i] != c && s[i - 1] == c))
+			deb = i;
+		if (s[i] != c && (s[i + 1] == c || s[i + 1] == '\0'))
+		{
+			fin = i;
+			str[j] = ft_print_tabl(s, deb, fin);
+			if (!ft_check_allocation(str, j))
+				return (NULL);
+			j++;
+		}
+		i++;
+	}
+	str[j] = NULL;
+	return (str);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	char	**str;
+
+	if (s == NULL)
+		return (NULL);
+	str = (char **)malloc((ft_count_words(s, c) + 1) * sizeof(char *));
+	if (str == NULL)
+		return (NULL);
+	str = ft_fill_table(s, c, str);
+	return (str);
 }

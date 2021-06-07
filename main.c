@@ -1,11 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amouhtal <amouhtal@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/06/07 13:10:19 by amouhtal          #+#    #+#             */
+/*   Updated: 2021/06/07 13:11:11 by amouhtal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
-void ft_print_stack(t_stack *stack)
+
+void	ft_print_stack(t_stack *stack)
 {
 	while (stack && stack->prev)
 		stack = stack->prev;
 	while (stack)
 	{
-		printf("%d\n",stack->value);
+		printf("%d\n", stack->value);
 		stack = stack->next;
 	}
 }
@@ -105,7 +118,6 @@ void	sort_by_lenght(t_frame *frame)
 	else
 		above_100element(frame);
 }
-
 
 int	main(int argc, char **argv)
 {

@@ -23,7 +23,7 @@ t_stack	*add_list(t_stack *stack)
 t_stack	*get_stack_a( char **new_argv, t_stack *stack_a)
 {
 	int	i;
-	int check;
+	int	check;
 
 	stack_a = new_stack_a();
 	i = 0;

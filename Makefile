@@ -1,5 +1,5 @@
 CC = gcc 
-SRCS = main.c operations.c push_swap_utils.c sort100element.c creat_stack.c sort5element.c handle_erros.c sort_helper.c sort3element.c free.c ft_split.c ft_strdup.c ft_strlen.c ft_strtrim.c util_functions.c
+SRCS = main.c operations.c push_swap_utils.c sort100element.c creat_stack.c sort5element.c handle_erros.c sort_helper.c sort3element.c free.c ft_split.c ft_strdup.c ft_strlen.c util_functions.c operation_util.c
 NAME = push_swap
 OBJS = $(SRCS:.c=.o)
 FLAGS = -Wall -Wextra -Werror

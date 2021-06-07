@@ -103,7 +103,6 @@ void	initilise(int lenght, char **argv, t_frame *frame)
 	j = 0;
 	check = 0;
 	lenght = calcule_lenght(argv, lenght);
-	exit(0);
 	i = 0;
 	new_argv = ft_new_arg(lenght, argv, new_argv);
 	if (!handl_error(new_argv))

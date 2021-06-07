@@ -6,47 +6,61 @@
 /*   By: amouhtal <amouhtal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 20:13:53 by amouhtal          #+#    #+#             */
-/*   Updated: 2021/06/06 19:40:51 by amouhtal         ###   ########.fr       */
+/*   Updated: 2021/06/07 11:44:17 by amouhtal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static	int		check(char c, char *set)
+int			ft_getstart(const char *s1, const char *set)
 {
-	int i;
+	size_t	len;
+	size_t	i;
 
+	len = ft_strlen(s1);
 	i = 0;
-	while (set[i])
+	while (i < len)
 	{
-		if (c == set[i])
-			return (1);
+		if (ft_strchr(set, s1[i]) == 0)
+			break ;
 		i++;
 	}
-	return (0);
+	return (i);
 }
 
-char			*ft_strtrim(char const *s1, char const *set)
+int			ft_getend(const char *s1, const char *set)
 {
-	char	*str;
-	int		len;
+	size_t	len;
+	size_t	i;
+
+	len = ft_strlen(s1);
+	i = 0;
+	while (i < len)
+	{
+		if (ft_strchr(set, s1[len - i - 1]) == 0)
+			break ;
+		i++;
+	}
+	return (len - i);
+}
+
+char		*ft_strtrim(char const *s1, char const *set)
+{
+	int		start;
+	int		end;
+	char	*newstr;
 
 	if (s1 == NULL)
-		return (0);
-	str = ft_strdup(s1);
-	if (str == NULL)
-		return (0);
-	while (check(str[0], (char *)set))
-		str++;
-	len = ft_strlen(str) - 1;
-	while (len > 0)
-	{
-		if (check(str[len], (char *)set))
-			str[len] = '\0';
-		else
-			break ;
-		len--;
-	}
-	free(str);
-	return (ft_strdup(str));
+		return (NULL);
+	if (set == NULL)
+		return (ft_strdup(s1));
+	start = ft_getstart(s1, set);
+	end = ft_getend(s1, set);
+	if (start >= end)
+		return (ft_strdup(""));
+	newstr = (char *)malloc(sizeof(char) * (end - start + 1));
+	if (newstr == NULL)
+		return (NULL);
+	strlcpy(newstr, s1 + start, end - start + 1);
+	return (newstr);
 }

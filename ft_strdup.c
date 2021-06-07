@@ -6,13 +6,13 @@
 /*   By: amouhtal <amouhtal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 11:14:38 by amouhtal          #+#    #+#             */
-/*   Updated: 2021/06/04 17:28:23 by amouhtal         ###   ########.fr       */
+/*   Updated: 2021/06/07 13:05:20 by amouhtal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-char		*ft_strdup(const char *s1)
+char	*ft_strdup(const char *s1)
 {
 	int		i;
 	char	*str;
