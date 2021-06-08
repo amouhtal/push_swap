@@ -6,13 +6,12 @@
 /*   By: amouhtal <amouhtal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 14:46:11 by amouhtal          #+#    #+#             */
-/*   Updated: 2021/06/07 14:46:12 by amouhtal         ###   ########.fr       */
+/*   Updated: 2021/06/08 13:06:40 by amouhtal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-# include    <stdio.h>
 # include   <stdlib.h>
 # include   <string.h>
 # include   <unistd.h>

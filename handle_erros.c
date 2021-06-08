@@ -6,7 +6,7 @@
 /*   By: amouhtal <amouhtal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 13:06:42 by amouhtal          #+#    #+#             */
-/*   Updated: 2021/06/07 14:36:54 by amouhtal         ###   ########.fr       */
+/*   Updated: 2021/06/08 12:28:07 by amouhtal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ int	deplicat_nbr(t_frame *frame, int	*table, int lenght)
 
 	j = 1;
 	i = 0;
-	while (i < lenght)
+	while (i < lenght - 1)
 	{
-		if (i + 1 < lenght)
+		if (i < lenght)
 		{
 			if (table[i] == table[i + 1])
 			{

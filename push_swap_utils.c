@@ -6,7 +6,7 @@
 /*   By: amouhtal <amouhtal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 14:46:17 by amouhtal          #+#    #+#             */
-/*   Updated: 2021/06/07 14:46:19 by amouhtal         ###   ########.fr       */
+/*   Updated: 2021/06/08 12:49:33 by amouhtal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ static int	calcule_lenght(char **argv, int	lenght)
 				lenght++;
 			ft_free_tab2d(tab);
 		}
-		else
+		else if (argv[j][0])
 			lenght++;
 		j++;
-	}
+	}	
 	return (lenght);
 }
 
@@ -66,9 +66,9 @@ static char	**ft_new_arg(int	lenght, char **argv, char **new_argv)
 	i = 1;
 	j = 0;
 	new_argv = (char **)malloc(sizeof(char *) * lenght + 1);
-	while (argv[i] && argv[i][0])
+	while (argv[i])
 	{
-		if (ft_strchr(argv[i], ' '))
+		if (ft_strchr(argv[i], ' ') && argv[i][0])
 		{
 			j2 = 0;
 			splited_tab = ft_split(argv[i], ' ');
@@ -76,7 +76,7 @@ static char	**ft_new_arg(int	lenght, char **argv, char **new_argv)
 				new_argv[j++] = ft_strdup(splited_tab[j2++]);
 			ft_free_tab2d(splited_tab);
 		}
-		else
+		else if (argv[i][0])
 			new_argv[j++] = ft_strdup(argv[i]);
 		i++;
 	}
